@@ -7,6 +7,8 @@ vim.g.mapleader = " "
 vim.g.loaded_netrwPlugin = 0
 
 vim.opt.number = true
+vim.opt.cursorline = true
+vim.opt.signcolumn = "yes"
 vim.opt.relativenumber = true
 vim.opt.clipboard = "unnamedplus"
 

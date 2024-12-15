@@ -15,11 +15,25 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
+		},
 		config = function()
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
 			local lspconfig = require("lspconfig")
-			lspconfig.lua_ls.setup({})
-			lspconfig.eslint.setup({})
-			lspconfig.ts_ls.setup({})
+
+			lspconfig.lua_ls.setup({
+				capabilities = capabilities,
+			})
+
+			lspconfig.eslint.setup({
+				capabilities = capabilities,
+			})
+
+			lspconfig.ts_ls.setup({
+				capabilities = capabilities,
+			})
 
 			vim.keymap.set("n", "gh", vim.lsp.buf.hover, { desc = "Hover" })
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go To Definition" })

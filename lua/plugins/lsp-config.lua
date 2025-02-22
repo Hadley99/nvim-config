@@ -22,6 +22,11 @@ return {
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 			local lspconfig = require("lspconfig")
 
+			lspconfig.denols.setup({
+				capabilities = capabilities,
+				root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+			})
+
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
 			})
@@ -40,6 +45,7 @@ return {
 
 			lspconfig.ts_ls.setup({
 				capabilities = capabilities,
+				root_dir = lspconfig.util.root_pattern("package.json"),
 			})
 
 			vim.keymap.set("n", "gh", vim.lsp.buf.hover, { desc = "Hover" })

@@ -46,7 +46,18 @@ return {
 							["<S-Tab>"] = require("telescope.actions").move_selection_previous,
 						},
 					},
-					find_command = { "fd", "--type", "f", "--strip-cwd-prefix", "-i" },
+					-- find_command = {
+					-- 	"fd",
+					-- 	"--type",
+					-- 	"f",
+					-- 	"--strip-cwd-prefix",
+					-- 	"-H",
+					-- 	"--ignore-case",
+					-- 	"--follow",
+					-- 	"--exclude",
+					-- 	".git",
+					-- },
+					-- find_command = { "fd", "--type", "f", "--strip-cwd-prefix", "-i", "-H", "--exclude", ".git" },
 				},
 				pickers = {
 					find_files = {

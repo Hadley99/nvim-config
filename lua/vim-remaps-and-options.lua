@@ -4,7 +4,6 @@ vim.cmd("set softtabstop=2")
 vim.cmd("set shiftwidth=2")
 
 vim.g.loaded_netrwPlugin = 0
-vim.g.mapleader = " "
 
 vim.opt.number = true
 vim.opt.cursorline = true
@@ -28,10 +27,11 @@ vim.keymap.set("i", "jj", "<Esc>")
 
 -- to use Option use <M-
 -- to use Command use <D-
-vim.keymap.set("n", "<D-s>", ":w<CR>", { noremap = true, silent = true, desc = "Save File" })
-vim.keymap.set("i", "<D-s>", "<Esc>:w<CR>", { noremap = true, silent = true, desc = "Save File" })
 
-vim.keymap.set("n", "<D-w>", ":bd<CR>", { noremap = true, silent = true, desc = "Close Buffer" })
+vim.keymap.set("n", "<C-s>", ":w<CR>", { noremap = true, silent = true, desc = "Save File" })
+-- vim.keymap.set("i", "<leader-s>", "<Esc>:w<CR>", { noremap = true, silent = true, desc = "Save File" })
+
+vim.keymap.set("n", "<leader-w>", ":bd<CR>", { noremap = true, silent = true, desc = "Close Buffer" })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",

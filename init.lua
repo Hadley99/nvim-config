@@ -1,3 +1,4 @@
+vim.g.mapleader = " "
 require("vim-remaps-and-options")
 
 -- Bootstrap lazy.nvim

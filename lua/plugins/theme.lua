@@ -1,22 +1,39 @@
 return {
+	-- {
+	-- 	"ellisonleao/gruvbox.nvim",
+	-- 	priority = 1000,
+	--
+	-- 	config = function()
+	-- 		require("gruvbox").setup({
+	-- 			bold = false,
+	-- 			contrast = "hard",
+	-- 			italic = {
+	-- 				strings = false,
+	-- 				emphasis = false,
+	-- 				comments = true,
+	-- 				operators = false,
+	-- 				folds = false,
+	-- 			},
+	-- 		})
+	-- 		vim.o.background = "dark"
+	-- 		vim.cmd("colorscheme gruvbox")
+	-- 	end,
+	-- },
 	{
-		"ellisonleao/gruvbox.nvim",
+		lazy = false,
+		"catppuccin/nvim",
+		name = "catppuccin",
 		priority = 1000,
-
 		config = function()
-			require("gruvbox").setup({
-				bold = false,
-				contrast = "hard",
-				italic = {
-					strings = false,
-					emphasis = false,
-					comments = true,
-					operators = false,
-					folds = false,
-				},
+			require("catppuccin").setup({
+				flavour = "mocha",
+				transparent_background = true,
+				no_italic = true, -- Force no italic
+				no_bold = true, -- Force no bold
+				no_underline = true, -- Force no underline
 			})
-			vim.o.background = "dark"
-			vim.cmd("colorscheme gruvbox")
+
+			vim.cmd("colorscheme catppuccin")
 		end,
 	},
 	-- {

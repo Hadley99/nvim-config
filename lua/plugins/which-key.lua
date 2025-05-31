@@ -3,9 +3,9 @@ return {
 	event = "VeryLazy",
 	opts = {
 		delay = 500,
-		preset = "modern",
+		preset = "helix",
 		win = {
-			col = 0.5,
+			-- col = 0.5, -- enable this when you need which-key at bottom center
 			border = "rounded",
 		},
 		presets = {

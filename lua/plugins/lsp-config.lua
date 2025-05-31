@@ -7,9 +7,24 @@ return {
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
+		dependencies = {
+			"saghen/blink.cmp",
+		},
 		config = function()
+			local capabilities = require("blink.cmp").get_lsp_capabilities()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "eslint", "ts_ls", "tailwindcss" },
+				ensure_installed = { "lua_ls", "ts_ls", "eslint", "tailwindcss" },
+				handlers = {
+					function(server_name)
+						-- Default handler for all servers
+						local lspconfig = require("lspconfig")
+						lspconfig[server_name].setup({
+							capabilities = capabilities,
+							root_dir = lspconfig.util.root_pattern("package.json"),
+						})
+					end,
+					-- You can add more specific handlers for other servers if needed
+				},
 			})
 		end,
 	},
@@ -43,20 +58,35 @@ return {
 				capabilities = capabilities,
 			})
 
-			lspconfig.ts_ls.setup({
-				capabilities = capabilities,
-				root_dir = lspconfig.util.root_pattern("package.json"),
-			})
+			-- lspconfig.ts_ls.setup({
+			-- 	capabilities = capabilities,
+			-- 	root_dir = lspconfig.util.root_pattern("package.json"),
+			-- })
 
-			vim.keymap.set("n", "gh", vim.lsp.buf.hover, { desc = "Hover" })
+			vim.keymap.set("n", "gh", function()
+				vim.lsp.buf.hover({ border = "rounded" })
+			end, { desc = "Hover" })
+
 			vim.keymap.set("n", "gH", vim.lsp.buf.signature_help, { desc = "Show signature" })
 			vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { desc = "Type definition" })
 
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go To Definition" })
 			vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, { desc = "Rename symbol" })
 
-			-- vim.keymap.set('n', 'gf', vim.lsp.buf.references, { desc = 'Find all references' }) -- Added in telescope for better UI
+			-- vim.keymap.set('n', 'gF', vim.lsp.buf.references, { desc = 'Find all references' }) -- Added in telescope for better UI
 			vim.keymap.set("n", "<leader>.", vim.lsp.buf.code_action, { desc = "Code Actions" })
+
+			vim.diagnostic.config({
+				virtual_text = true,
+				signs = true,
+				underline = {
+					severity = {
+						min = vim.diagnostic.severity.HINT,
+					},
+				},
+				update_in_insert = false,
+				severity_sort = true,
+			})
 		end,
 	},
 }

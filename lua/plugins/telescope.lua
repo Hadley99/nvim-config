@@ -9,7 +9,8 @@ return {
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
 			vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
 			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
-			vim.keymap.set("n", "gf", builtin.lsp_references, { desc = "LSP references" })
+			vim.keymap.set("n", "<leader>gb", builtin.git_branches, { desc = "Git branches" })
+			vim.keymap.set("n", "gF", builtin.lsp_references, { desc = "LSP references" })
 
 			vim.api.nvim_create_autocmd("FileType", {
 				pattern = "TelescopeResults",
@@ -40,10 +41,12 @@ return {
 						i = { -- Insert mode mappings
 							["<Tab>"] = require("telescope.actions").move_selection_next,
 							["<S-Tab>"] = require("telescope.actions").move_selection_previous,
+							["<C-c>"] = require("telescope.actions").close, -- Add this line
 						},
 						n = { -- Normal mode mappings
 							["<Tab>"] = require("telescope.actions").move_selection_next,
 							["<S-Tab>"] = require("telescope.actions").move_selection_previous,
+							["<C-c>"] = require("telescope.actions").close, -- Add this line
 						},
 					},
 					-- find_command = {
@@ -69,6 +72,10 @@ return {
 					},
 					lsp_references = {
 						show_line = false, -- hides code in result name
+						-- path_display = filenameFirst,
+					},
+					git_branches = {
+						previewer = false,
 					},
 				},
 			})

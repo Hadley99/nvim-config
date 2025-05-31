@@ -1,0 +1,47 @@
+{
+  "consoleLog": {
+    "prefix": "clg",
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "body": "console.log({ $1 });"
+  },
+
+  "consoleDir": {
+    "prefix": "cld",
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "body": "console.dir({ $1 }, { depth: Infinity, colors: true });"
+  },
+
+  "reactArrowFunctionExportComponent": {
+    "key": "reactArrowFunctionExportComponent",
+    "prefix": "rafce",
+    "body": [
+      "import React from 'react'",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = () => {",
+      "  return (",
+      "    <div>${0}</div>",
+      "  )",
+      "}",
+      "",
+      "export default ${TM_FILENAME_BASE}"
+    ],
+    "scope": "javascript,typescript,javascriptreact,typescriptreact"
+  },
+
+  "reactFunctionalExportComponent": {
+    "key": "reactFunctionalExportComponent",
+    "prefix": "rfce",
+    "body": [
+      "import React from 'react'",
+      "",
+      "function ${1:${TM_FILENAME_BASE}}() {",
+      "  return (",
+      "    <div>${0}</div>",
+      "  )",
+      "}",
+      "",
+      "export default ${TM_FILENAME_BASE}"
+    ],
+    "scope": "javascript,typescript,javascriptreact,typescriptreact"
+  }
+}

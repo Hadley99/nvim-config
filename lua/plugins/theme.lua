@@ -1,5 +1,17 @@
 return {
 	-- {
+	-- 	"Shatur/neovim-ayu",
+	-- 	lazy = false,
+	-- 	config = function()
+	-- 		require("ayu").setup({
+	-- 			mirage = false,
+	-- 			terminal = false,
+	-- 		})
+	--
+	-- 		vim.cmd("colorscheme ayu")
+	-- 	end,
+	-- },
+	-- {
 	-- 	"ellisonleao/gruvbox.nvim",
 	-- 	priority = 1000,
 	--
@@ -30,7 +42,7 @@ return {
 				transparent_background = true,
 				no_italic = true, -- Force no italic
 				no_bold = true, -- Force no bold
-				no_underline = true, -- Force no underline
+				no_underline = false, -- Force no underline
 			})
 
 			vim.cmd("colorscheme catppuccin")

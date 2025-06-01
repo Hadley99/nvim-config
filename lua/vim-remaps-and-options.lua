@@ -34,8 +34,8 @@ vim.keymap.set("i", "kj", "<Esc>")
 vim.keymap.set("i", "kk", "<Esc>")
 vim.keymap.set("i", "jj", "<Esc>")
 
--- to use Option use <M-
--- to use Command use <D-
+-- to use Option use <M-  (this is working by default in Ghostty or I have set some config in Ghostty and forgot about it)
+-- to use Command use <D- (this doesnt work by default)
 
 vim.keymap.set("n", "<C-s>", ":w<CR>", { noremap = true, silent = true, desc = "Save File" })
 -- vim.keymap.set("i", "<leader-s>", "<Esc>:w<CR>", { noremap = true, silent = true, desc = "Save File" })
@@ -69,6 +69,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
 })
 
 -- Store in session
-vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,localoptions"
 -- vim.cmd([[let &t_Cs = "\e[4:3m"]]) -- start undercurl
 -- vim.cmd([[let &t_Ce = "\e[4:0m"]]) -- end undercurl

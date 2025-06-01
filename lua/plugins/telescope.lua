@@ -1,3 +1,12 @@
+local function filenameFirst(_, path)
+	local tail = vim.fs.basename(path)
+	local parent = vim.fs.dirname(path)
+	if parent == "." then
+		return tail
+	end
+	return string.format("%s - %s", tail, parent)
+end
+
 return {
 	{
 		"nvim-telescope/telescope.nvim",
@@ -22,20 +31,30 @@ return {
 				end,
 			})
 
-			local function filenameFirst(_, path)
-				local tail = vim.fs.basename(path)
-				local parent = vim.fs.dirname(path)
-				if parent == "." then
-					return tail
-				end
-				return string.format("%s - %s", tail, parent)
-			end
-
 			require("telescope").setup({
 				defaults = {
 					sorting_strategy = "ascending", -- display results top->bottom
 					layout_config = {
 						prompt_position = "top", -- search bar at the top
+					},
+					file_ignore_patterns = {
+						".git/", -- Git repository data
+						"node_modules/", -- Node.js dependencies
+						"vendor/", -- PHP, Go, or other vendored dependencies
+						"target/", -- Rust/Cargo build output
+						"build/", -- Build directories
+						"build/", -- Build directories
+						"dist/", -- Distribution/output folders
+						"%.lock", -- lock files (yarn.lock, package-lock.json, etc.)
+						"%.env", -- .env files
+						"%.cache/", -- Caches
+						"__pycache__/", -- Python cache
+						"%.DS_Store", -- macOS metadata files
+						"%.class", -- Java class files
+						"%.o",
+						"%.obj", -- Compiled object files
+						"%.exe",
+						"%.dll", -- Windows binaries
 					},
 					mappings = {
 						i = { -- Insert mode mappings
@@ -49,23 +68,12 @@ return {
 							["<C-c>"] = require("telescope.actions").close, -- Add this line
 						},
 					},
-					-- find_command = {
-					-- 	"fd",
-					-- 	"--type",
-					-- 	"f",
-					-- 	"--strip-cwd-prefix",
-					-- 	"-H",
-					-- 	"--ignore-case",
-					-- 	"--follow",
-					-- 	"--exclude",
-					-- 	".git",
-					-- },
-					-- find_command = { "fd", "--type", "f", "--strip-cwd-prefix", "-i", "-H", "--exclude", ".git" },
 				},
 				pickers = {
 					find_files = {
 						path_display = filenameFirst,
 						previewer = false,
+						hidden = true,
 					},
 					buffers = {
 						previewer = false,

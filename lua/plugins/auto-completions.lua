@@ -16,10 +16,17 @@ return {
 		},
 
 		cmdline = {
-			-- default = { "lsp", "path", "snippets", "buffer" },
-			sources = { "lsp", "path", "snippets", "buffer" },
+			enabled = true,
 		},
 
+		sources = {
+			default = {
+				"lsp",
+				"path",
+				"snippets",
+				"buffer",
+			},
+		},
 		signature = { enabled = true, window = { border = "rounded" } },
 
 		completion = {
